@@ -13,6 +13,8 @@ import java.util.concurrent.TimeUnit;
 
 public class SwaggerTestRunner {
 
+    private static final String BEARER_TOKEN = "your_token_here"; // 🔐 Replace with actual token
+
     private static final OkHttpClient client = new OkHttpClient.Builder()
             .connectTimeout(10, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
@@ -50,8 +52,13 @@ public class SwaggerTestRunner {
     }
 
     private static Request buildRequest(String baseUrl, String path, String method, Operation operation) {
+
+        
         String fullUrl = baseUrl + path;
 
+        
+      
+        
         // Replace path variables with dummy values
         if (operation.getParameters() != null) {
             for (Parameter param : operation.getParameters()) {
@@ -63,7 +70,8 @@ public class SwaggerTestRunner {
             }
         }
 
-        Request.Builder builder = new Request.Builder().url(fullUrl);
+          Request.Builder builder = new Request.Builder().url(fullUrl)
+              .addHeader("Authorization", "Bearer " + BEARER_TOKEN);
 
         if ("POST".equalsIgnoreCase(method) || "PUT".equalsIgnoreCase(method)) {
             String jsonBody = buildDummyRequestBody(operation);
