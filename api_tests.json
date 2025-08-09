@@ -1,0 +1,21 @@
+[
+  {
+    "method": "POST",
+    "url": "https://api.example.com/users",
+    "headers": {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer your_token_here"
+    },
+    "payload": {
+      "name": "John Doe",
+      "email": "john@example.com"
+    }
+  },
+  {
+    "method": "GET",
+    "url": "https://api.example.com/users/123",
+    "headers": {
+      "Authorization": "Bearer your_token_here"
+    }
+  }
+]
